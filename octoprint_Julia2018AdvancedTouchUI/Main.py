@@ -98,9 +98,9 @@ filaments = {"ABS": 220,
              "WoodFill": 200,
              "CopperFill": 180
              }
-caliberationPosition = { 'X1': 203, 'Y1': 31,
-                         'X2': 58, 'Y2': 31,
-                         'X3': 130, 'Y3': 249
+caliberationPosition = { 'X1': 181, 'Y1': 21,
+                         'X2': 35.6, 'Y2': 21,
+                         'X3': 110, 'Y3': 197
                          }
 
 try:
@@ -1453,7 +1453,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI.Ui_MainWindow):
         '''
         self.stackedWidget.setCurrentWidget(self.step6Page)
         octopiclient.jog(z=10, absolute=True)
-        octopiclient.jog(x=142, y=40, absolute=True)
+        octopiclient.jog(x=105, y=105, absolute=True)
         octopiclient.jog(z=2, absolute=True)
 
 
