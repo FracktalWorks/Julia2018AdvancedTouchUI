@@ -38,3 +38,8 @@ The MainGUI.py file is generated from the Test2.ui file using
 
 2. Install TouchUI into Octoprint:
 ..*
+
+## Locations:
+
+* Installation Location: /home/pi/Julia2018Octoprint/venv/lib/python2.7/site-packages/octoprint_Julia2018AdvancedTouchUI
+* Xinit Folder: /etc/X11/xinit/xinitrc
