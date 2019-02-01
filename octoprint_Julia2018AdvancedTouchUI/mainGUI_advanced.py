@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'f:\FracktalWorks\Julia2018ExtendedTouchUI\octoprint_Julia2018ExtendedTouchUI\mainGUI.ui'
+# Form implementation generated from reading ui file 'g:\FracktalWorks\Julia2018AdvancedTouchUI\octoprint_Julia2018AdvancedTouchUI\mainGUI_advanced.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -839,7 +839,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 398, 630))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 478, 630))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setContentsMargins(0, 0, 3, 0)
@@ -2056,10 +2056,10 @@ class Ui_MainWindow(object):
         self.networkInfoPage = QtGui.QWidget()
         self.networkInfoPage.setObjectName(_fromUtf8("networkInfoPage"))
         self.hostnameLabel = QtGui.QLabel(self.networkInfoPage)
-        self.hostnameLabel.setGeometry(QtCore.QRect(10, 0, 201, 31))
+        self.hostnameLabel.setGeometry(QtCore.QRect(10, 0, 240, 31))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
-        font.setPointSize(18)
+        font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
         self.hostnameLabel.setFont(font)
@@ -2067,10 +2067,10 @@ class Ui_MainWindow(object):
 "background-color: rgba(255, 255, 255, 0);"))
         self.hostnameLabel.setObjectName(_fromUtf8("hostnameLabel"))
         self.hostname = QtGui.QLabel(self.networkInfoPage)
-        self.hostname.setGeometry(QtCore.QRect(10, 22, 481, 51))
+        self.hostname.setGeometry(QtCore.QRect(10, 22, 240, 51))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
-        font.setPointSize(18)
+        font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
         self.hostname.setFont(font)
@@ -2078,49 +2078,49 @@ class Ui_MainWindow(object):
 "background-color: rgba(255, 255, 255, 0);"))
         self.hostname.setObjectName(_fromUtf8("hostname"))
         self.wifiIpLabel = QtGui.QLabel(self.networkInfoPage)
-        self.wifiIpLabel.setGeometry(QtCore.QRect(10, 90, 301, 31))
+        self.wifiIpLabel.setGeometry(QtCore.QRect(10, 90, 240, 31))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
-        font.setPointSize(18)
+        font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
         self.wifiIpLabel.setFont(font)
         self.wifiIpLabel.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
 "background-color: rgba(255, 255, 255, 0);"))
         self.wifiIpLabel.setObjectName(_fromUtf8("wifiIpLabel"))
-        self.wifiIp = QtGui.QLabel(self.networkInfoPage)
-        self.wifiIp.setGeometry(QtCore.QRect(10, 110, 481, 51))
+        self.wifiMac = QtGui.QLabel(self.networkInfoPage)
+        self.wifiMac.setGeometry(QtCore.QRect(10, 110, 241, 51))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
-        font.setPointSize(18)
+        font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
-        self.wifiIp.setFont(font)
-        self.wifiIp.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+        self.wifiMac.setFont(font)
+        self.wifiMac.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
 "background-color: rgba(255, 255, 255, 0);"))
-        self.wifiIp.setObjectName(_fromUtf8("wifiIp"))
+        self.wifiMac.setObjectName(_fromUtf8("wifiMac"))
         self.lanIpLabel = QtGui.QLabel(self.networkInfoPage)
-        self.lanIpLabel.setGeometry(QtCore.QRect(10, 170, 301, 31))
+        self.lanIpLabel.setGeometry(QtCore.QRect(10, 170, 240, 31))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
-        font.setPointSize(18)
+        font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
         self.lanIpLabel.setFont(font)
         self.lanIpLabel.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
 "background-color: rgba(255, 255, 255, 0);"))
         self.lanIpLabel.setObjectName(_fromUtf8("lanIpLabel"))
-        self.lanIp = QtGui.QLabel(self.networkInfoPage)
-        self.lanIp.setGeometry(QtCore.QRect(10, 190, 481, 51))
+        self.lanMac = QtGui.QLabel(self.networkInfoPage)
+        self.lanMac.setGeometry(QtCore.QRect(10, 190, 240, 51))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
-        font.setPointSize(18)
+        font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
-        self.lanIp.setFont(font)
-        self.lanIp.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+        self.lanMac.setFont(font)
+        self.lanMac.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
 "background-color: rgba(255, 255, 255, 0);"))
-        self.lanIp.setObjectName(_fromUtf8("lanIp"))
+        self.lanMac.setObjectName(_fromUtf8("lanMac"))
         self.networkInfoBackButton = QtGui.QPushButton(self.networkInfoPage)
         self.networkInfoBackButton.setGeometry(QtCore.QRect(0, 250, 481, 71))
         self.networkInfoBackButton.setMinimumSize(QtCore.QSize(0, 0))
@@ -2155,21 +2155,85 @@ class Ui_MainWindow(object):
         self.networkInfoBackButton.setDefault(False)
         self.networkInfoBackButton.setFlat(False)
         self.networkInfoBackButton.setObjectName(_fromUtf8("networkInfoBackButton"))
-        self.printPreviewSelected_4 = QtGui.QLabel(self.networkInfoPage)
-        self.printPreviewSelected_4.setGeometry(QtCore.QRect(280, 30, 210, 210))
-        self.printPreviewSelected_4.setStyleSheet(_fromUtf8("background-color: rgba(255, 255, 255, 0);"))
-        self.printPreviewSelected_4.setText(_fromUtf8(""))
-        self.printPreviewSelected_4.setPixmap(QtGui.QPixmap(_fromUtf8("templates/img/thumbnail.png")))
-        self.printPreviewSelected_4.setScaledContents(True)
-        self.printPreviewSelected_4.setObjectName(_fromUtf8("printPreviewSelected_4"))
+        self.wifiMacLabel = QtGui.QLabel(self.networkInfoPage)
+        self.wifiMacLabel.setGeometry(QtCore.QRect(241, 90, 240, 31))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Light"))
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setWeight(50)
+        self.wifiMacLabel.setFont(font)
+        self.wifiMacLabel.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);"))
+        self.wifiMacLabel.setObjectName(_fromUtf8("wifiMacLabel"))
+        self.lanMacLabel = QtGui.QLabel(self.networkInfoPage)
+        self.lanMacLabel.setGeometry(QtCore.QRect(241, 170, 240, 31))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Light"))
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setWeight(50)
+        self.lanMacLabel.setFont(font)
+        self.lanMacLabel.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);"))
+        self.lanMacLabel.setObjectName(_fromUtf8("lanMacLabel"))
+        self.wifiIp = QtGui.QLabel(self.networkInfoPage)
+        self.wifiIp.setGeometry(QtCore.QRect(241, 110, 241, 51))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Light"))
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setWeight(50)
+        self.wifiIp.setFont(font)
+        self.wifiIp.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);"))
+        self.wifiIp.setObjectName(_fromUtf8("wifiIp"))
+        self.lanIp = QtGui.QLabel(self.networkInfoPage)
+        self.lanIp.setGeometry(QtCore.QRect(241, 190, 240, 51))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Light"))
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setWeight(50)
+        self.lanIp.setFont(font)
+        self.lanIp.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);"))
+        self.lanIp.setObjectName(_fromUtf8("lanIp"))
+        self.wifiApLabel = QtGui.QLabel(self.networkInfoPage)
+        self.wifiApLabel.setGeometry(QtCore.QRect(241, 0, 240, 31))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Light"))
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setWeight(50)
+        self.wifiApLabel.setFont(font)
+        self.wifiApLabel.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);"))
+        self.wifiApLabel.setObjectName(_fromUtf8("wifiApLabel"))
+        self.wifiAp = QtGui.QLabel(self.networkInfoPage)
+        self.wifiAp.setGeometry(QtCore.QRect(241, 22, 240, 51))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Light"))
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setWeight(50)
+        self.wifiAp.setFont(font)
+        self.wifiAp.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 0);"))
+        self.wifiAp.setObjectName(_fromUtf8("wifiAp"))
         self.hostnameLabel.raise_()
         self.wifiIpLabel.raise_()
-        self.wifiIp.raise_()
+        self.wifiMac.raise_()
         self.lanIpLabel.raise_()
-        self.lanIp.raise_()
+        self.lanMac.raise_()
         self.networkInfoBackButton.raise_()
-        self.printPreviewSelected_4.raise_()
         self.hostname.raise_()
+        self.wifiMacLabel.raise_()
+        self.lanMacLabel.raise_()
+        self.wifiIp.raise_()
+        self.lanIp.raise_()
+        self.wifiApLabel.raise_()
+        self.wifiAp.raise_()
         self.stackedWidget.addWidget(self.networkInfoPage)
         self.OTAUpdatePage = QtGui.QWidget()
         self.OTAUpdatePage.setObjectName(_fromUtf8("OTAUpdatePage"))
@@ -2324,7 +2388,7 @@ class Ui_MainWindow(object):
         self.logTextEdit.setFont(font)
         self.logTextEdit.setStyleSheet(_fromUtf8("QTextEdit{\n"
 "background-color:  rgb(40, 40, 40);\n"
-"font-color: white;\n"
+"/*font-color: white;*/\n"
 "color: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
@@ -2377,6 +2441,104 @@ class Ui_MainWindow(object):
         self.logTextEdit.setReadOnly(True)
         self.logTextEdit.setObjectName(_fromUtf8("logTextEdit"))
         self.stackedWidget.addWidget(self.softwareUpdateProgressPage)
+        self.firmwareUpdateProgressPage = QtGui.QWidget()
+        self.firmwareUpdateProgressPage.setObjectName(_fromUtf8("firmwareUpdateProgressPage"))
+        self.firmwareUpdateLog = QtGui.QTextEdit(self.firmwareUpdateProgressPage)
+        self.firmwareUpdateLog.setGeometry(QtCore.QRect(0, 0, 481, 250))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham"))
+        font.setPointSize(12)
+        self.firmwareUpdateLog.setFont(font)
+        self.firmwareUpdateLog.setStyleSheet(_fromUtf8("QTextEdit{\n"
+"background-color:  rgb(40, 40, 40);\n"
+"/*font-color: white;*/\n"
+"color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"\n"
+"QScrollBar:vertical {\n"
+" border: 1px solid black; \n"
+"border-radius: 5px;\n"
+"background: rgb(40,40,40);\n"
+"width: 30px;\n"
+"}\n"
+"\n"
+"/* Sets up the color and height of handle */\n"
+"QScrollBar::handle:vertical {\n"
+"border-radius: 5px;\n"
+"background: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"min-height: 20px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"/* This remvoes the bottom button by setting the height to 0px */\n"
+"QScrollBar::add-line:vertical {\n"
+"height: 0px;\n"
+"subcontrol-position: bottom;\n"
+"subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"/* This remvoes the top button by setting the height to 0px */\n"
+"QScrollBar::sub-line:vertical {\n"
+"height: 0px;\n"
+"subcontrol-position: top;\n"
+"subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"/*\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"border: 2px solid grey;\n"
+"width: 5px;\n"
+"height: 5px;\n"
+"background: white;\n"
+"}\n"
+"\n"
+"\n"
+"/* need this to get rid of crosshatching on scrollbar background */\n"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"background: none;\n"
+"}\n"
+""))
+        self.firmwareUpdateLog.setReadOnly(True)
+        self.firmwareUpdateLog.setObjectName(_fromUtf8("firmwareUpdateLog"))
+        self.firmwareUpdateBackButton = QtGui.QPushButton(self.firmwareUpdateProgressPage)
+        self.firmwareUpdateBackButton.setEnabled(False)
+        self.firmwareUpdateBackButton.setGeometry(QtCore.QRect(0, 250, 481, 71))
+        self.firmwareUpdateBackButton.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Light"))
+        font.setPointSize(9)
+        self.firmwareUpdateBackButton.setFont(font)
+        self.firmwareUpdateBackButton.setStyleSheet(_fromUtf8("QPushButton {\n"
+"     border: 1px solid rgb(87, 87, 87);\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}\n"
+"\n"
+"QPushButton:flat {\n"
+"    border: none; /* no border for a flat push button */\n"
+"}\n"
+"\n"
+"QPushButton:default {\n"
+"    border-color: navy; /* make the default button prominent */\n"
+"}"))
+        self.firmwareUpdateBackButton.setText(_fromUtf8(""))
+        self.firmwareUpdateBackButton.setIcon(icon4)
+        self.firmwareUpdateBackButton.setIconSize(QtCore.QSize(50, 50))
+        self.firmwareUpdateBackButton.setCheckable(False)
+        self.firmwareUpdateBackButton.setAutoDefault(False)
+        self.firmwareUpdateBackButton.setDefault(False)
+        self.firmwareUpdateBackButton.setFlat(False)
+        self.firmwareUpdateBackButton.setObjectName(_fromUtf8("firmwareUpdateBackButton"))
+        self.stackedWidget.addWidget(self.firmwareUpdateProgressPage)
         self.calibratePage = QtGui.QWidget()
         self.calibratePage.setObjectName(_fromUtf8("calibratePage"))
         self.calibrateLabel = QtGui.QLabel(self.calibratePage)
@@ -4474,7 +4636,7 @@ class Ui_MainWindow(object):
         self.moveZMBabyStep.setFlat(False)
         self.moveZMBabyStep.setObjectName(_fromUtf8("moveZMBabyStep"))
         self.setFeedRateButton = QtGui.QPushButton(self.feedRateTab)
-        self.setFeedRateButton.setGeometry(QtCore.QRect(388, 11, 91, 119))
+        self.setFeedRateButton.setGeometry(QtCore.QRect(388, 12, 91, 117))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(13)
@@ -4570,7 +4732,8 @@ class Ui_MainWindow(object):
 "   \n"
 "}\n"
 "QSpinBox ::text:selected {\n"
-"    background-color: rgb(255, 146, 57);\n"
+"    background-color: rgb(40, 40, 40);\n"
+"    /* background-color: rgb(255, 146, 57); */\n"
 "   \n"
 "}\n"
 "QSpinBox::up-button {\n"
@@ -4759,7 +4922,7 @@ class Ui_MainWindow(object):
         self.fanOnButton.setFlat(False)
         self.fanOnButton.setObjectName(_fromUtf8("fanOnButton"))
         self.toolTempSpinBox = QtGui.QSpinBox(self.temperatureTab)
-        self.toolTempSpinBox.setGeometry(QtCore.QRect(0, 60, 161, 131))
+        self.toolTempSpinBox.setGeometry(QtCore.QRect(0, 58, 161, 131))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(20)
@@ -4771,8 +4934,8 @@ class Ui_MainWindow(object):
 "   \n"
 "}\n"
 "QSpinBox ::text:selected {\n"
-"    background-color: rgb(255, 146, 57);\n"
-"   \n"
+"    /* background-color: rgb(255, 146, 57); */\n"
+"   background-color: rgb(40, 40, 40);\n"
 "}\n"
 "QSpinBox::up-button {\n"
 "     border: 1px solid rgb(87, 87, 87);\n"
@@ -4828,7 +4991,7 @@ class Ui_MainWindow(object):
         self.toolTempSpinBox.setProperty("value", 0)
         self.toolTempSpinBox.setObjectName(_fromUtf8("toolTempSpinBox"))
         self.setToolTempButton = QtGui.QPushButton(self.temperatureTab)
-        self.setToolTempButton.setGeometry(QtCore.QRect(159, 60, 71, 130))
+        self.setToolTempButton.setGeometry(QtCore.QRect(159, 60, 71, 127))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(13)
@@ -4940,7 +5103,7 @@ class Ui_MainWindow(object):
         self.bedLabel_2.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.bedLabel_2.setObjectName(_fromUtf8("bedLabel_2"))
         self.setBedTempButton = QtGui.QPushButton(self.temperatureTab)
-        self.setBedTempButton.setGeometry(QtCore.QRect(400, 60, 71, 128))
+        self.setBedTempButton.setGeometry(QtCore.QRect(400, 60, 71, 127))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(13)
@@ -5599,7 +5762,7 @@ class Ui_MainWindow(object):
         self.filamentTab = QtGui.QWidget()
         self.filamentTab.setObjectName(_fromUtf8("filamentTab"))
         self.changeFilamentButton = QtGui.QToolButton(self.filamentTab)
-        self.changeFilamentButton.setGeometry(QtCore.QRect(110, 180, 241, 91))
+        self.changeFilamentButton.setGeometry(QtCore.QRect(0, 180, 240, 91))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(12)
@@ -5607,7 +5770,6 @@ class Ui_MainWindow(object):
         self.changeFilamentButton.setStyleSheet(_fromUtf8("QToolButton  {\n"
 "     border: 1px solid rgb(87, 87, 87);\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"border-radius: 15px;\n"
 "\n"
 "\n"
 "}\n"
@@ -5749,17 +5911,58 @@ class Ui_MainWindow(object):
         self.flowRateLabelControlPage.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
 "background-color: rgba(255, 255, 255, 0);"))
         self.flowRateLabelControlPage.setObjectName(_fromUtf8("flowRateLabelControlPage"))
+        self.toggleFilamentSensorButton = QtGui.QToolButton(self.filamentTab)
+        self.toggleFilamentSensorButton.setEnabled(True)
+        self.toggleFilamentSensorButton.setGeometry(QtCore.QRect(240, 180, 240, 91))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham"))
+        font.setPointSize(12)
+        self.toggleFilamentSensorButton.setFont(font)
+        self.toggleFilamentSensorButton.setStyleSheet(_fromUtf8("QToolButton  {\n"
+"     border: 1px solid rgb(87, 87, 87);\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"\n"
+"\n"
+"}\n"
+"\n"
+"QToolButton :pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"    /* #dadbde #f6f7fa */\n"
+"}\n"
+"\n"
+"\n"
+"QToolButton :flat {\n"
+"    border: none; /* no border for a flat push button */\n"
+"}\n"
+"\n"
+"QToolButton :default {\n"
+"    border-color: navy; /* make the default button prominent */\n"
+"}\n"
+"\n"
+"QToolButton :focus {\n"
+"    outline: none;\n"
+"}"))
+        icon31 = QtGui.QIcon()
+        icon31.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/filamentSensorOn.png")), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        self.toggleFilamentSensorButton.setIcon(icon31)
+        self.toggleFilamentSensorButton.setIconSize(QtCore.QSize(60, 60))
+        self.toggleFilamentSensorButton.setCheckable(False)
+        self.toggleFilamentSensorButton.setChecked(False)
+        self.toggleFilamentSensorButton.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        self.toggleFilamentSensorButton.setObjectName(_fromUtf8("toggleFilamentSensorButton"))
         self.flowRateSpinBox.raise_()
         self.setFlowRateButton.raise_()
         self.flowRateLabelControlPage.raise_()
         self.changeFilamentButton.raise_()
-        icon31 = QtGui.QIcon()
-        icon31.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/Spool.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon31.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/Spool_Selected.png")), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        icon31.addPixmap(QtGui.QPixmap(_fromUtf8("png/Spool.png")), QtGui.QIcon.Selected, QtGui.QIcon.Off)
-        icon31.addPixmap(QtGui.QPixmap(_fromUtf8("png/Spool_Selected.png")), QtGui.QIcon.Selected, QtGui.QIcon.On)
-        icon31.addPixmap(QtGui.QPixmap(_fromUtf8("png/Spool_Selected.png")), QtGui.QIcon.Active, QtGui.QIcon.On)
-        self.controlTabWidget.addTab(self.filamentTab, icon31, _fromUtf8(""))
+        self.toggleFilamentSensorButton.raise_()
+        icon32 = QtGui.QIcon()
+        icon32.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/Spool.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon32.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/Spool_Selected.png")), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon32.addPixmap(QtGui.QPixmap(_fromUtf8("png/Spool.png")), QtGui.QIcon.Selected, QtGui.QIcon.Off)
+        icon32.addPixmap(QtGui.QPixmap(_fromUtf8("png/Spool_Selected.png")), QtGui.QIcon.Selected, QtGui.QIcon.On)
+        icon32.addPixmap(QtGui.QPixmap(_fromUtf8("png/Spool_Selected.png")), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.controlTabWidget.addTab(self.filamentTab, icon32, _fromUtf8(""))
         self.controlBackButton = QtGui.QPushButton(self.controlPage)
         self.controlBackButton.setGeometry(QtCore.QRect(380, 0, 100, 50))
         self.controlBackButton.setMinimumSize(QtCore.QSize(0, 0))
@@ -5946,9 +6149,9 @@ class Ui_MainWindow(object):
 "QPushButton:focus {\n"
 "    outline: none;\n"
 "}"))
-        icon32 = QtGui.QIcon()
-        icon32.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/load.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.changeFilamentLoadButton.setIcon(icon32)
+        icon33 = QtGui.QIcon()
+        icon33.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/load.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.changeFilamentLoadButton.setIcon(icon33)
         self.changeFilamentLoadButton.setIconSize(QtCore.QSize(60, 60))
         self.changeFilamentLoadButton.setObjectName(_fromUtf8("changeFilamentLoadButton"))
         self.changeFilamentUnloadButton = QtGui.QPushButton(self.changeFilamentPage)
@@ -5980,9 +6183,9 @@ class Ui_MainWindow(object):
 "QPushButton:focus {\n"
 "    outline: none;\n"
 "}"))
-        icon33 = QtGui.QIcon()
-        icon33.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/unload.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.changeFilamentUnloadButton.setIcon(icon33)
+        icon34 = QtGui.QIcon()
+        icon34.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/unload.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.changeFilamentUnloadButton.setIcon(icon34)
         self.changeFilamentUnloadButton.setIconSize(QtCore.QSize(60, 60))
         self.changeFilamentUnloadButton.setObjectName(_fromUtf8("changeFilamentUnloadButton"))
         self.changeFilamentBackButton = QtGui.QPushButton(self.changeFilamentPage)
@@ -6294,7 +6497,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.mainApplication)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(6)
+        self.stackedWidget.setCurrentIndex(7)
         self.controlTabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -6342,7 +6545,7 @@ class Ui_MainWindow(object):
         self.ethStaticGatewayLabel.setText(_translate("MainWindow", "Gateway", None))
         self.ethStaticGatewayKeyboardButton.setText(_translate("MainWindow", "...", None))
         self.ethStaticIpKeyboardButton.setText(_translate("MainWindow", "...", None))
-        self.networkInfoButton.setText(_translate("MainWindow", "Network info", None))
+        self.networkInfoButton.setText(_translate("MainWindow", "Network Info", None))
         self.configureWifiButton.setText(_translate("MainWindow", "Configure WiFi", None))
         self.configureEthButton.setText(_translate("MainWindow", "Configure Ethernet", None))
         self.calibrateTouch.setText(_translate("MainWindow", "Calibrate Touch", None))
@@ -6352,18 +6555,29 @@ class Ui_MainWindow(object):
         self.rotateDisplaySettingsComboBox.setItemText(0, _translate("MainWindow", "Normal", None))
         self.rotateDisplaySettingsComboBox.setItemText(1, _translate("MainWindow", "Flipped", None))
         self.rotateDisplaySettingsLabel.setText(_translate("MainWindow", "Rotation", None))
-        self.hostnameLabel.setText(_translate("MainWindow", "URL: ", None))
+        self.hostnameLabel.setText(_translate("MainWindow", "mDNS URL", None))
         self.hostname.setText(_translate("MainWindow", "Hostname", None))
-        self.wifiIpLabel.setText(_translate("MainWindow", "Wi-Fi IP address: ", None))
-        self.wifiIp.setText(_translate("MainWindow", "Hostname: ", None))
-        self.lanIpLabel.setText(_translate("MainWindow", "LAN IP address: ", None))
-        self.lanIp.setText(_translate("MainWindow", "Hostname: ", None))
+        self.wifiIpLabel.setText(_translate("MainWindow", "Wi-Fi MAC", None))
+        self.wifiMac.setText(_translate("MainWindow", "WiFi", None))
+        self.lanIpLabel.setText(_translate("MainWindow", "Ethernet MAC", None))
+        self.lanMac.setText(_translate("MainWindow", "Ethernet", None))
+        self.wifiMacLabel.setText(_translate("MainWindow", "Wi-Fi IP", None))
+        self.lanMacLabel.setText(_translate("MainWindow", "Ethernet IP", None))
+        self.wifiIp.setText(_translate("MainWindow", "WiFi", None))
+        self.lanIp.setText(_translate("MainWindow", "Ethernet", None))
+        self.wifiApLabel.setText(_translate("MainWindow", "Wi-Fi AP", None))
+        self.wifiAp.setText(_translate("MainWindow", "WiFi", None))
         self.performUpdateButton.setText(_translate("MainWindow", "Update", None))
         self.logTextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Gotham\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Software Update Starting, Please Wait....</p></body></html>", None))
+        self.firmwareUpdateLog.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Gotham\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">Firmware Update Starting, Please Wait....</span></p></body></html>", None))
         self.calibrateLabel.setText(_translate("MainWindow", "Calibrate:", None))
         self.nozzleOffsetButton.setText(_translate("MainWindow", "Height", None))
         self.calibrationWizardButton.setText(_translate("MainWindow", "Wizard", None))
@@ -6429,6 +6643,7 @@ class Ui_MainWindow(object):
         self.changeFilamentButton.setText(_translate("MainWindow", "Change Filament", None))
         self.flowRateSpinBox.setSuffix(_translate("MainWindow", "%", None))
         self.flowRateLabelControlPage.setText(_translate("MainWindow", "Flow Rate :", None))
+        self.toggleFilamentSensorButton.setText(_translate("MainWindow", "Filament/Door Sensor", None))
         self.selectFilamentlabel.setText(_translate("MainWindow", "Select Filament :", None))
         self.changeFilamentLoadButton.setText(_translate("MainWindow", "Load", None))
         self.changeFilamentUnloadButton.setText(_translate("MainWindow", "Unload", None))
