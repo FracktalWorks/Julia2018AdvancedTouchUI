@@ -699,7 +699,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
 
     ''' +++++++++++++++++++++++++++++++++OTA Update+++++++++++++++++++++++++++++++++++ '''
 
-    ddef getFirmwareVersion(self):
+    def getFirmwareVersion(self):
         try:
             headers = {'X-Api-Key': apiKey}
             req = requests.get('http://{}/plugin/JuliaFirmwareUpdater/hardware/version'.format(ip), headers=headers)
