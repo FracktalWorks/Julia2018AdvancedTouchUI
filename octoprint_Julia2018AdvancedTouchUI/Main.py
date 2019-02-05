@@ -11,7 +11,7 @@
  * Licence: AGPLv3
 *************************************************************************
 '''
-import mainGUI_advanced 
+import mainGUI_advanced
 import keyboard
 import dialog
 import styles
