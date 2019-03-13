@@ -99,9 +99,9 @@ filaments = {"ABS": 220,
              "CopperFill": 180
              }
 
-calibrationPosition = {'X1': 181, 'Y1': 21,
-                       'X2': 35.6, 'Y2': 21,
-                       'X3': 110, 'Y3': 197
+calibrationPosition = {'X1': 171, 'Y1': 21,
+                       'X2': 25.6, 'Y2': 21,
+                       'X3': 100, 'Y3': 197
                        }
 
 try:
