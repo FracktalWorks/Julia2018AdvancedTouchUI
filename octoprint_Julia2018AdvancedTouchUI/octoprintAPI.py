@@ -654,7 +654,7 @@ class octoprintAPI:
     def getPrintRestoreSettings(self):
         url = 'http://' + self.ip + '/plugin/Julia2018PrintRestore/getSettings'
         headers = {'X-Api-Key': self.apiKey}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers)bit
         temp = response.json()
         return temp
 
