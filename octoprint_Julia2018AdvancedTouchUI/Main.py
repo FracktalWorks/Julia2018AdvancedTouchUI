@@ -1606,6 +1606,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
             os.system('sudo cp -f config/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf')
             os.system('sudo rm -rf /home/pi/.octoprint/users.yaml')
             os.system('sudo rm -rf /home/pi/.octoprint/printerProfiles/*')
+            os.system('sudo rm -rf /home/pi/.octoprint/scripts/gcode')
             os.system('sudo cp -f config/config_Julia2018AdvancedTouchUI.yaml /home/pi/.octoprint/config.yaml')
             self.tellAndReboot("Settings restored. Rebooting...")
 
