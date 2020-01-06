@@ -15,6 +15,7 @@ import mainGUI_advanced
 import keyboard
 import dialog
 import styles
+import asset_bundle
 
 from PyQt4 import QtCore, QtGui
 import time
@@ -35,6 +36,7 @@ import os
 import io
 import requests
 import re
+import logging
 
 import RPi.GPIO as GPIO
 from collections import OrderedDict
@@ -137,19 +139,17 @@ def getIP(interface):
         scan_result = \
             subprocess.Popen("ifconfig | grep " + interface + " -A 1", stdout=subprocess.PIPE, shell=True).communicate()[0]
         # Processing STDOUT into a dictionary that later will be converted to a json file later
-        scan_result = scan_result.split(
-            '\n')  # each ssid and pass from an item in a list ([ssid pass,ssid paas])
-        scan_result = [s.strip() for s in scan_result]
-        # scan_result = [s.strip('"') for s in scan_result]
-        scan_result = filter(None, scan_result)
-        return scan_result[1][scan_result[1].index('inet addr:') + 10: 23]
+        rInetAddr = r"inet addr:\s*([\d.]+)"
+        mtIp = re.search(rInetAddr, scan_result)
+        if mtIp and len(mtIp.groups()) == 1:
+            return str(mtIp.group(1))
     except:
         return None
 
 
 def getMac(interface):
     try:
-        mac = subprocess.Popen(" cat /sys/class/net/" + interface + "/address", 
+        mac = subprocess.Popen(" cat /sys/class/net/" + interface + "/address",
                                stdout=subprocess.PIPE, shell=True).communicate()[0].rstrip()
         if not mac:
             return "Not found"
@@ -160,7 +160,7 @@ def getMac(interface):
 
 def getWifiAp():
     try:
-        ap = subprocess.Popen("iwgetid -r", 
+        ap = subprocess.Popen("iwgetid -r",
                               stdout=subprocess.PIPE, shell=True).communicate()[0].rstrip()
         if not ap:
             return "Not connected"
@@ -295,27 +295,50 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         This method gets called when an object of type MainUIClass is defined
         '''
         super(MainUiClass, self).__init__()
-        # Calls setupUi that sets up layout and geometry of all UI elements
-        self.setupUi(self)
-        self.stackedWidget.setCurrentWidget(self.loadingPage)
-        self.setStep(10)
-        self.keyboardWindow = None
-        self.changeFilamentHeatingFlag = False
-        self.setHomeOffsetBool = False
-        self.currentImage = None
-        self.currentFile = None
-        self.sanityCheck = ThreadSanityCheck()
-        self.sanityCheck.start()
-        self.connect(self.sanityCheck, QtCore.SIGNAL('LOADED'), self.proceed)
-        self.connect(self.sanityCheck, QtCore.SIGNAL('STARTUP_ERROR'), self.handleStartupError)
+        formatter = logging.Formatter("%(asctime)s %(message)s")
+        self._logger = logging.getLogger("TouchUI")
+        file_handler = logging.FileHandler("/home/pi/ui.log")
+        file_handler.setFormatter(formatter)
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(formatter)
+        # file_handler.setLevel(logging.DEBUG)
+        self._logger.addHandler(file_handler)
+        self._logger.addHandler(stream_handler)
 
-        for spinbox in self.findChildren(QtGui.QSpinBox):
-            lineEdit = spinbox.lineEdit()
-            lineEdit.setReadOnly(True)
-            lineEdit.setDisabled(True)
-            p = lineEdit.palette()
-            p.setColor(QtGui.QPalette.Highlight, QtGui.QColor(40, 40, 40))
-            lineEdit.setPalette(p)
+        # Calls setupUi that sets up layout and geometry of all UI elements
+        try:
+            self.__packager = asset_bundle.AssetBundle()
+            self.__packager.save_time()
+            self.__timelapse_enabled = self.__packager.read_match() if self.__packager.time_delta() else True
+            self.__timelapse_started = not self.__packager.time_delta()
+
+            self._logger.info("Hardware ID = {}, Unlocked = {}".format(self.__packager.hc(), self.__timelapse_enabled))
+            print("Hardware ID = {}, Unlocked = {}".format(self.__packager.hc(), self.__timelapse_enabled))
+            self._logger.info("File time = {}, Demo = {}".format(self.__packager.read_time(), self.__timelapse_started))
+            print("File time = {}, Demo = {}".format(self.__packager.read_time(), self.__timelapse_started))
+            self.setupUi(self)
+            self.stackedWidget.setCurrentWidget(self.loadingPage)
+            self.setStep(10)
+            self.keyboardWindow = None
+            self.changeFilamentHeatingFlag = False
+            self.setHomeOffsetBool = False
+            self.currentImage = None
+            self.currentFile = None
+            self.sanityCheck = ThreadSanityCheck(self._logger, virtual=not self.__timelapse_enabled)
+            self.sanityCheck.start()
+            self.connect(self.sanityCheck, QtCore.SIGNAL('LOADED'), self.proceed)
+            self.connect(self.sanityCheck, QtCore.SIGNAL('STARTUP_ERROR'), self.handleStartupError)
+
+            for spinbox in self.findChildren(QtGui.QSpinBox):
+                lineEdit = spinbox.lineEdit()
+                lineEdit.setReadOnly(True)
+                lineEdit.setDisabled(True)
+                p = lineEdit.palette()
+                p.setColor(QtGui.QPalette.Highlight, QtGui.QColor(40, 40, 40))
+                lineEdit.setPalette(p)
+
+        except Exception as e:
+            self._logger.error(e.message)
 
         # Thread to get the get the state of the Printer as well as the temperature
 
@@ -328,7 +351,8 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         self.QtSocket.start()
         self.setActions()
         self.movie.stop()
-        self.stackedWidget.setCurrentWidget(MainWindow.homePage)
+        self.stackedWidget.setCurrentWidget(self.pgLock)
+        self.Lock_showLock()
         self.isFilamentSensorInstalled()
         self.setIPStatus()
 
@@ -468,6 +492,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         self.moveZPBabyStep.pressed.connect(lambda: octopiclient.gcode(command='M290 Z0.025'))
         self.moveZMBabyStep.pressed.connect(lambda: octopiclient.gcode(command='M290 Z-0.025'))
 
+
         # ChangeFilament rutien
         self.changeFilamentButton.pressed.connect(self.changeFilament)
         self.changeFilamentBackButton.pressed.connect(self.control)
@@ -542,6 +567,60 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         # Filament sensor toggle
         self.toggleFilamentSensorButton.clicked.connect(self.toggleFilamentSensor)
 
+        # Lock settings
+        self.pgLock_pin.textChanged.connect(self.Lock_onPinInputChanged)
+
+        self.pgLock_bt1.clicked.connect(lambda: self.Lock_kbAdd("1"))
+        self.pgLock_bt2.clicked.connect(lambda: self.Lock_kbAdd("2"))
+        self.pgLock_bt3.clicked.connect(lambda: self.Lock_kbAdd("3"))
+        self.pgLock_bt4.clicked.connect(lambda: self.Lock_kbAdd("4"))
+        self.pgLock_bt5.clicked.connect(lambda: self.Lock_kbAdd("5"))
+        self.pgLock_bt6.clicked.connect(lambda: self.Lock_kbAdd("6"))
+        self.pgLock_bt7.clicked.connect(lambda: self.Lock_kbAdd("7"))
+        self.pgLock_bt8.clicked.connect(lambda: self.Lock_kbAdd("8"))
+        self.pgLock_bt9.clicked.connect(lambda: self.Lock_kbAdd("9"))
+        self.pgLock_bt0.clicked.connect(lambda: self.Lock_kbAdd("0"))
+        self.pgLock_btBackspace.clicked.connect(lambda: self.pgLock_pin.backspace())
+        self.pgLock_btSubmit.clicked.connect(self.Lock_submitPIN)
+
+    ''' +++++++++++++++++++++++++Lock Settings+++++++++++++++++++++++++++++++++++ '''
+    def Lock_showLock(self):
+        self.pgLock_HID.setText(str(self.__packager.hc()))
+        self.pgLock_pin.setText("")
+        if not self.__timelapse_enabled:
+            # dialog.WarningOk(self, "Machine locked!", overlay=True)
+            self.stackedWidget.setCurrentWidget(self.pgLock)
+        else:
+            # if self.__timelapse_started:
+            #     dialog.WarningOk(self, "Demo mode!", overlay=True)
+            self.stackedWidget.setCurrentWidget(self.homePage)
+
+    def Lock_kbAdd(self, txt):
+        if len(str(self.pgLock_pin.text())) < 9:
+            self.pgLock_pin.setText(str(self.pgLock_pin.text()) + txt)
+        self.pgLock_pin.setFocus()
+
+    def Lock_onPinInputChanged(self):
+        self.pgLock_btBackspace.setEnabled(len(str(self.pgLock_pin.text())) > 0)
+        self.pgLock_btSubmit.setEnabled(len(str(self.pgLock_pin.text())) > 3)
+
+    def Lock_submitPIN(self):
+        k = -1
+        t = self.pgLock_pin.text()
+        try:
+            k = int(t)
+            if self.__packager.match(k):
+                self.__packager.save(k)
+                # self.__timelapse_enabled = True
+                if dialog.SuccessOk(self, "Machine unlocked!", overlay=True):
+                    self.tellAndReboot()
+                self.stackedWidget.setCurrentWidget(self.homePage)
+            else:
+                dialog.WarningOk(self, "Incorrect unlock code")
+        except Exception as e:
+            dialog.WarningOk(self, "Error while parsing unlock code")
+            print(e.message)
+
     ''' +++++++++++++++++++++++++Print Restore+++++++++++++++++++++++++++++++++++ '''
 
     def printRestoreMessageBox(self, file):
@@ -559,6 +638,10 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
 
     def onServerConnected(self):
         self.isFilamentSensorInstalled()
+        if not self.__timelapse_enabled:
+            return
+        if self.__timelapse_started:
+            return
         try:
             response = octopiclient.isFailureDetected()
             if response["canRestore"] is True:
@@ -613,6 +696,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         if 'pause_print' in data:
             pause_print = data["pause_print"]
 
+        #Update
         if triggered_extruder0 and self.stackedWidget.currentWidget() not in [self.changeFilamentPage, self.changeFilamentProgressPage,
                                   self.changeFilamentExtrudePage, self.changeFilamentRetractPage]:
             if dialog.WarningOk(self, "Filament outage in Extruder 0"):
@@ -840,7 +924,8 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
             self.wifiMessageBox.setLocalIcon('success.png')
             self.wifiMessageBox.setText('Connected, IP: ' + x)
             self.wifiMessageBox.setStandardButtons(QtGui.QMessageBox.Ok)
-            self.ipStatus.setText(x)  # sets the IP addr. in the status bar
+            self.ipStatus.setText(x) #sets the IP addr. in the status bar
+
         else:
             self.wifiMessageBox.setText("Not able to connect to WiFi")
 
@@ -895,6 +980,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
             except:
                 self.ipStatus.setText("Not connected")
             time.sleep(60)
+
 
     ''' +++++++++++++++++++++++++++++++++Ethernet Settings+++++++++++++++++++++++++++++ '''
 
@@ -1063,6 +1149,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
     ''' +++++++++++++++++++++++++++++++++Change Filament+++++++++++++++++++++++++++++++ '''
 
     def unloadFilament(self):
+        #Update
         if self.changeFilamentComboBox.findText("Loaded Filament") == -1:
             octopiclient.setToolTemperature(
                 filaments[str(self.changeFilamentComboBox.currentText())])
@@ -1074,6 +1161,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         self.loadFlag = False
 
     def loadFilament(self):
+        #Update
         if self.changeFilamentComboBox.findText("Loaded Filament") == -1:
             octopiclient.setToolTemperature(
                 filaments[str(self.changeFilamentComboBox.currentText())])
@@ -1088,6 +1176,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         self.stackedWidget.setCurrentWidget(self.changeFilamentPage)
         self.changeFilamentComboBox.clear()
         self.changeFilamentComboBox.addItems(filaments.keys())
+        #Update
         if self.tool0TargetTemperature > 0 and self.printerStatusText in ["Printing","Paused"]:
             self.changeFilamentComboBox.addItem("Loaded Filament")
             index = self.changeFilamentComboBox.findText("Loaded Filament")
@@ -1404,6 +1493,9 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
             self.changeFilamentButton.setDisabled(True)
             self.menuCalibrateButton.setDisabled(True)
             self.menuPrintButton.setDisabled(True)
+            if not self.__timelapse_enabled:
+                octopiclient.cancelPrint()
+                self.coolDownAction()
 
         elif status == "Paused":
             self.playPauseButton.setChecked(False)
@@ -1666,7 +1758,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
             if dialog.WarningOk(self, "Network Disconnected"):
                 return
         self.QRCodeLabel.setPixmap(
-            qrcode.make(json.dumps(qrip), image_factory=Image).pixmap())
+            qrcode.make("http://"+ qrip, image_factory=Image).pixmap())
         self.stackedWidget.setCurrentWidget(self.QRCodePage)
 
 
@@ -1722,6 +1814,7 @@ class QtWebsocket(QtCore.QThread):
         if "event" in data:
             if data["event"]["type"] == "Connected":
                 self.emit(QtCore.SIGNAL('CONNECTED'))
+
         if "plugin" in data:
             if data["plugin"]["plugin"] == 'Julia2018FilamentSensor':
                 self.emit(QtCore.SIGNAL('FILAMENT_SENSOR_TRIGGERED'), data["plugin"]["data"])
@@ -1743,11 +1836,11 @@ class QtWebsocket(QtCore.QThread):
 
             if data["current"]["messages"]:
                 for item in data["current"]["messages"]:
-                    if 'M206' in item:
+                    if 'M206' in item:  # response to M503, send current Z offset value
                         self.emit(QtCore.SIGNAL('Z_HOME_OFFSET'), item[item.index('Z') + 1:].split(' ', 1)[0])
-                    if 'Count' in item:  # can get thris throught the positionUpdate event
-                        self.emit(QtCore.SIGNAL('SET_Z_HOME_OFFSET'), item[item.index('Z') + 2:].split(' ', 1)[0],
-                                  False)
+                        # if 'Count' in item:  # gets the current Z value, uses it to set Z offset
+                        #     self.emit(QtCore.SIGNAL('SET_Z_HOME_OFFSET'), item[item.index('Z') + 2:].split(' ', 1)[0],
+                        #               False)
 
             if data["current"]["state"]["text"]:
                 self.emit(QtCore.SIGNAL('STATUS'), data["current"]["state"]["text"])
@@ -1760,9 +1853,11 @@ class QtWebsocket(QtCore.QThread):
 
             def temp(data, tool, temp):
                 try:
-                    return data["current"]["temps"][0][tool][temp]
+                    if tool in data["current"]["temps"][0]:
+                        return data["current"]["temps"][0][tool][temp]
                 except:
-                    return 0
+                    pass
+                return 0
 
             if data["current"]["temps"] and len(data["current"]["temps"]) > 0:
                 try:
@@ -1777,7 +1872,7 @@ class QtWebsocket(QtCore.QThread):
                     #                 'bedActual': data["current"]["temps"][0]["bed"]["actual"],
                     #                 'bedTarget': data["current"]["temps"][0]["bed"]["target"]}
                     pass
-                # self.emit(QtCore.SIGNAL('TEMPERATURES'), temperatures)
+                    # self.emit(QtCore.SIGNAL('TEMPERATURES'), temperatures)
 
     def on_open(self, ws):
         pass
@@ -1790,9 +1885,11 @@ class QtWebsocket(QtCore.QThread):
 
 
 class ThreadSanityCheck(QtCore.QThread):
-    def __init__(self):
+    def __init__(self, logger, virtual=False):
         super(ThreadSanityCheck, self).__init__()
         self.MKSPort = None
+        self.virtual = virtual
+        self._logger = logger
 
     def run(self):
         global octopiclient
@@ -1811,20 +1908,27 @@ class ThreadSanityCheck(QtCore.QThread):
                 result = subprocess.Popen("dmesg | grep 'ttyUSB'", stdout=subprocess.PIPE, shell=True).communicate()[0]
                 result = result.split('\n')  # each ssid and pass from an item in a list ([ssid pass,ssid paas])
                 result = [s.strip() for s in result]
-                for line in result:
-                    if 'FTDI' in line:
-                        self.MKSPort = line[line.index('ttyUSB'):line.index('ttyUSB') + 7]
-                        print self.MKSPort
+                if not self.virtual:
+                    result = \
+                    subprocess.Popen("dmesg | grep 'ttyUSB'", stdout=subprocess.PIPE, shell=True).communicate()[0]
+                    result = result.split('\n')  # each ssid and pass from an item in a list ([ssid pass,ssid paas])
+                    result = [s.strip() for s in result]
+                    for line in result:
+                        if 'FTDI' in line:
+                            self.MKSPort = line[line.index('ttyUSB'):line.index('ttyUSB') + 7]
+                            print self.MKSPort
 
                 if not self.MKSPort:
                     octopiclient.connectPrinter(port="VIRTUAL", baudrate=115200)
                 else:
                     octopiclient.connectPrinter(port="/dev/" + self.MKSPort, baudrate=115200)
                 break
-            except:
+            except Exception as e:
                 time.sleep(1)
                 uptime = uptime + 1
-                print "Not Connected!"
+                # print "Not Connected!"
+                print(e.message)
+                self._logger.error("ThreadSanityCheck: " + str(e.message))
         if not shutdown_flag:
             self.emit(QtCore.SIGNAL('LOADED'))
 
