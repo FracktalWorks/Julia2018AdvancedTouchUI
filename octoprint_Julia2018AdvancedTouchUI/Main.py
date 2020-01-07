@@ -936,7 +936,6 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         self.hostname.setText(getHostname())
         self.wifiAp.setText(getWifiAp())
         self.wifiIp.setText("Not connected" if not ipWifi else ipWifi)
-        self.ipStatus.setText("Not connected" if not ipWifi else ipWifi)
         self.lanIp.setText("Not connected" if not ipEth else ipEth)
         self.wifiMac.setText(getMac(ThreadRestartNetworking.WLAN))
         self.lanMac.setText(getMac(ThreadRestartNetworking.ETH))
