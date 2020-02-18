@@ -638,10 +638,10 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
 
     def onServerConnected(self):
         self.isFilamentSensorInstalled()
-        if not self.__timelapse_enabled:
-            return
-        if self.__timelapse_started:
-            return
+        # if not self.__timelapse_enabled:
+        #     return
+        # if self.__timelapse_started:
+        #     return
         try:
             response = octopiclient.isFailureDetected()
             if response["canRestore"] is True:
