@@ -1680,7 +1680,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
         levels third leveling position
         :return:
         '''
-        self.pointLabel.setText("Point {} of 4".format(int(self.fullLevelingCount + 1)))
+        self.pointLabel.setText("Point {} of 9".format(int(self.fullLevelingCount + 1)))
         if self.fullLevelingCount == 0:  # first point
             octopiclient.gcode(command='G29 S1')
             self.stackedWidget.setCurrentWidget(self.fullStep2Page)
@@ -1688,7 +1688,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_advanced.Ui_MainWindow):
 
         else:
             # All other poitns
-            if self.fullLevelingCount < 4:
+            if self.fullLevelingCount < 9:
                 self.stackedWidget.setCurrentWidget(self.fullStep2Page)
                 octopiclient.gcode(command='G29 S2')
                 self.fullLevelingCount += 1
